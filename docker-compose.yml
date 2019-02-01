@@ -1,0 +1,43 @@
+version: "3"
+
+services:
+  db:
+    build: ./docker/MySQL/
+    environment:
+      MYSQL_ROOT_PASSWORD: P@ssw0rd
+      MYSQL_DATABASE: nowtter
+      MYSQL_USER: nowtter
+      MYSQL_PASSWORD: nowtter
+    ports:
+    - "3306:3306"
+    volumes:
+      - nowtter_db_volume:/var/lib/mysql
+
+  test_db:
+    build: ./docker/MySQL/
+    environment:
+      MYSQL_ROOT_PASSWORD: P@ssw0rd
+      MYSQL_DATABASE: nowtter_test
+      MYSQL_USER: nowtter_test
+      MYSQL_PASSWORD: nowtter_test
+    ports:
+    - "3307:3306"
+    volumes:
+      - nowtter_test_db_volume:/var/lib/mysql
+
+  php:
+    build: ./docker/PHP/
+    ports:
+    - "8080:80"
+    volumes:
+    - ./src:/var/www/nowtter
+    links:
+    - db
+    - test_db
+
+volumes:
+  nowtter_db_volume:
+    driver: 'local'
+  nowtter_test_db_volume:
+    driver: 'local'
+
