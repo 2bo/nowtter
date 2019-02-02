@@ -2,6 +2,10 @@
 # http://www.symfony-project.org/reference/1_4/en/10-Routing
 
 # default rules
+post:
+  url: /post
+  param: { module: post, action: post }
+
 homepage:
   url:   /
   param: { module: default, action: index }
