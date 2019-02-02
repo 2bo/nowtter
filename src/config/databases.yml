@@ -1,10 +1,31 @@
 # You can find more information about this file on the symfony website:
 # http://www.symfony-project.org/reference/1_4/en/07-Databases
-
 all:
   doctrine:
     class: sfDoctrineDatabase
+
+prod:
+  doctrine:
+    class: sfDoctrineDatabase
     param:
-      dsn:      mysql:host=localhost;dbname=nowtter
-      username: root
-      password: 
+      dsn:       mysql:host=db;dbname=nowtter
+      username: nowtter
+      password:  nowtter
+
+dev:
+  doctrine:
+    class: sfDoctrineDatabase
+    param:
+      dsn:       mysql:host=db;dbname=nowtter
+      username: nowtter
+      password:  nowtter
+
+test:
+  doctrine:
+    class: sfDoctrineDatabase
+    param:
+      dsn:       mysql:host=test_db;dbname=nowtter_test
+      username: nowtter_test
+      password:  nowtter_test
+
+
