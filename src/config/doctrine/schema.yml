@@ -1,0 +1,48 @@
+MUser:
+  actAs:
+    { Timestampable: ~ }
+  columns:
+    user_name: { type: string(255) ,notnull: ture , unique: true}
+    email: { type: string(255) }
+    profile: { type: string(1000) }
+    birthday: { type: date }
+    is_private: { type: boolean ,notnull: true, default: 0}
+
+TTweet:
+  actAs:
+    { Timestampable: ~ }
+  columns:
+    user_id: { type: integer, notnull: true }
+    body: { type: string(140) }
+    is_enable: { type: boolean, notnull: true, default: 1 }
+  relations:
+    MUser: { onDelete: CASCADE, local: user_id, foreign: id, foreignAlias: Tweets }
+
+TFollow:
+  actAs:
+    { Timestampable: ~ }
+  columns:
+    user_id: { type: integer ,primary: true}
+    follow_user_id: { type: integer , primary: true }
+  relations:
+    MUser: { onDelete: CASCADE, local: user_id, foreign: id, foreignAlias: Follows }
+
+TFavorite:
+  actAs:
+    { Timestampable: ~ }
+  columns:
+    user_id: { type: integer, notnull: true }
+    tweet_id: { type: integer, notnull: true }
+  relations:
+    MUser:  { onDelete: CASCADE, local: user_id, foreign: id, foreignAlias: Favorites }
+    TTweet: { onDelete: CASCADE, local: tweet_id, foreign: id, foreignAlias: FavoritedUsers }
+
+TRetweet:
+  actAs:
+    { Timestampable: ~ }
+  columns:
+    user_id: { type: integer, notnull: true }
+    tweet_id: { type: integer, notnull: true }
+  relations:
+    MUser:  { onDelete: CASCADE, local: user_id, foreign: id, foreignAlias: Retweets }
+    TTweet: { onDelete: CASCADE, local: tweet_id, foreign: id, foreignAlias: RetweetedUsers }
