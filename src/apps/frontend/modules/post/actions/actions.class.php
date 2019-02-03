@@ -42,6 +42,9 @@ class postActions extends sfActions
 
                 $con->commit();
 
+                sfContext::getInstance()->getConfiguration()->loadHelpers('Url');
+                $this->redirect(url_for('timeline'));
+
             } catch (Exception $e) {
                 $con->rollback();
                 throw $e;
