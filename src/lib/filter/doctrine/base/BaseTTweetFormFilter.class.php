@@ -14,7 +14,7 @@ abstract class BaseTTweetFormFilter extends BaseFormFilterDoctrine
     {
         $this->setWidgets(array(
             'user_id' => new sfWidgetFormDoctrineChoice(array('model' => $this->getRelatedModelName('MUser'), 'add_empty' => true)),
-            'body' => new sfWidgetFormFilterInput(),
+            'body' => new sfWidgetFormFilterInput(array('with_empty' => false)),
             'is_enable' => new sfWidgetFormChoice(array('choices' => array('' => 'yes or no', 1 => 'yes', 0 => 'no'))),
             'created_at' => new sfWidgetFormFilterDate(array('from_date' => new sfWidgetFormDate(), 'to_date' => new sfWidgetFormDate(), 'with_empty' => false)),
             'updated_at' => new sfWidgetFormFilterDate(array('from_date' => new sfWidgetFormDate(), 'to_date' => new sfWidgetFormDate(), 'with_empty' => false)),

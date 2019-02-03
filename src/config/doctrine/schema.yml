@@ -13,7 +13,7 @@ TTweet:
     { Timestampable: ~ }
   columns:
     user_id: { type: integer, notnull: true }
-    body: { type: string(140) }
+    body: { type: string(140), notnull: true }
     is_enable: { type: boolean, notnull: true, default: 1 }
   relations:
     MUser: { onDelete: CASCADE, local: user_id, foreign: id, foreignAlias: Tweets }

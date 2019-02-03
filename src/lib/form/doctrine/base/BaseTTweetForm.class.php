@@ -26,7 +26,7 @@ abstract class BaseTTweetForm extends BaseFormDoctrine
         $this->setValidators(array(
             'id' => new sfValidatorChoice(array('choices' => array($this->getObject()->get('id')), 'empty_value' => $this->getObject()->get('id'), 'required' => false)),
             'user_id' => new sfValidatorDoctrineChoice(array('model' => $this->getRelatedModelName('MUser'))),
-            'body' => new sfValidatorString(array('max_length' => 140, 'required' => false)),
+            'body' => new sfValidatorString(array('max_length' => 140)),
             'is_enable' => new sfValidatorBoolean(array('required' => false)),
             'created_at' => new sfValidatorDateTime(),
             'updated_at' => new sfValidatorDateTime(),
