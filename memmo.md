@@ -45,3 +45,10 @@ schema.ymlについて
 [symfony 1.4 メモ（schemaの書き方）](https://qiita.com/shotets/items/f55d9e625c78bb8f05e6)
 
 
+実装する機能
+
+* ログイン
+* ツイート(自分の)
+* ツイート(人の)
+* 投稿フォーム
+* ユーザ管理画面

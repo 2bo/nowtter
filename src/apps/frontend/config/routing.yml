@@ -6,6 +6,10 @@ post:
   url: /post
   param: { module: post, action: post }
 
+timeline:
+  url: /timeline
+  param: { module: timeline, action: index }
+
 homepage:
   url:   /
   param: { module: default, action: index }
