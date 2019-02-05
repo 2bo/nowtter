@@ -2,11 +2,14 @@ MUser:
   actAs:
     { Timestampable: ~ }
   columns:
+    sf_guard_user_id: { type: integer, unique: true }
     user_name: { type: string(255) ,notnull: ture , unique: true}
     email: { type: string(255) }
     profile: { type: string(1000) }
     birthday: { type: date }
     is_private: { type: boolean ,notnull: true, default: 0}
+  relations:
+    sfGuardUser: { onDelete: CASCADE, local: sf_guard_user_id, foreign: id, foreignType: one, foreignAlias: MUser }
 
 TTweet:
   actAs:
