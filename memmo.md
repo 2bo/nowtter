@@ -37,12 +37,15 @@ $ ./symfony generate:module [app_name] [module_name]
 
 
 schema.ymlについて
+
 * 1つのテーブルの複数カラムに同一のテーブルへの外部キーを設定するのは難しそう
 * テーブル名はアッパーキャメルケースで記載する。生成されるDBテーブルはスネークケースになる
 
 参考
 
 [symfony 1.4 メモ（schemaの書き方）](https://qiita.com/shotets/items/f55d9e625c78bb8f05e6)
+
+[2011-08-03 Symfony1.4で認証機能をつける](http://d.hatena.ne.jp/Kmusiclife/20110803/1312344314)
 
 
 実装する機能
@@ -52,3 +55,4 @@ schema.ymlについて
 * ツイート(人の)
 * 投稿フォーム
 * ユーザ管理画面
+

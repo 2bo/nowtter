@@ -8,6 +8,15 @@ sfGuardUser:
     is_super_admin: true
     Groups:         [Group_admin]
 
+  User_follow:
+    first_name:     Jack
+    last_name:      Kennedy
+    email_address:  jack.kennedy@gmail.com
+    username:       jack
+    password:       jack
+    is_super_admin: true
+    Groups:         [Group_admin]
+
 sfGuardGroup:
   Group_admin:
     name:           admin
@@ -18,3 +27,4 @@ sfGuardPermission:
   Permission_admin:
     name:           admin
     description:    Administrator permission
+

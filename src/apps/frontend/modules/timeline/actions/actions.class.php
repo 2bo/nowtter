@@ -17,10 +17,25 @@ class timelineActions extends sfActions
      */
     public function executeIndex(sfWebRequest $request)
     {
-        $this->tweets = Doctrine_Core::getTable('TTweet')
-            ->createQuery('q')
-            ->Select('body')
-            ->orderBy('created_at DESC')
-            ->execute();
+        $userName = $request->getParameter('name');
+        $tweetRepo = new TweetRepository();
+
+        if (strlen($userName) > 0) {
+            $this->tweets = $tweetRepo->getTweetsByName($userName);
+        } else {
+            $userId = $this->getUser()->getGuardUser()->getId();
+            $this->tweets = $tweetRepo->getTimelineTweetsById($userId);
+        }
     }
+
+    public function executeGetJson(sfWebRequest $response)
+    {
+        $userId = $this->getUser()->getGuardUser()->getId();
+        $tweetRepo = new TweetRepository();
+        $tweets = $tweetRepo->getTimelineTweetsById($userId, true);
+        $this->getResponse()->setHttpHeader('Content-type', 'application/json');
+        return $this->renderText(json_encode($tweets));
+    }
+
+
 }

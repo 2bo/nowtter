@@ -16,7 +16,7 @@ abstract class BaseTFavoriteForm extends BaseFormDoctrine
     {
         $this->setWidgets(array(
             'id' => new sfWidgetFormInputHidden(),
-            'user_id' => new sfWidgetFormDoctrineChoice(array('model' => $this->getRelatedModelName('MUser'), 'add_empty' => false)),
+            'user_id' => new sfWidgetFormDoctrineChoice(array('model' => $this->getRelatedModelName('sfGuardUser'), 'add_empty' => false)),
             'tweet_id' => new sfWidgetFormDoctrineChoice(array('model' => $this->getRelatedModelName('TTweet'), 'add_empty' => false)),
             'created_at' => new sfWidgetFormDateTime(),
             'updated_at' => new sfWidgetFormDateTime(),
@@ -24,7 +24,7 @@ abstract class BaseTFavoriteForm extends BaseFormDoctrine
 
         $this->setValidators(array(
             'id' => new sfValidatorChoice(array('choices' => array($this->getObject()->get('id')), 'empty_value' => $this->getObject()->get('id'), 'required' => false)),
-            'user_id' => new sfValidatorDoctrineChoice(array('model' => $this->getRelatedModelName('MUser'))),
+            'user_id' => new sfValidatorDoctrineChoice(array('model' => $this->getRelatedModelName('sfGuardUser'))),
             'tweet_id' => new sfValidatorDoctrineChoice(array('model' => $this->getRelatedModelName('TTweet'))),
             'created_at' => new sfValidatorDateTime(),
             'updated_at' => new sfValidatorDateTime(),

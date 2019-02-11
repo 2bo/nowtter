@@ -2,5 +2,5 @@
 <table>
     <?php echo $form ?>
 </table>
-<input type="submit" name="submit" value="now!">
+<input id="submit_button" type="submit" name="submit" value="now!">
 </fom>

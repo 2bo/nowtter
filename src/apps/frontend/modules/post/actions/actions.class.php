@@ -24,34 +24,35 @@ class postActions extends sfActions
     {
         if ($request->isMethod(sfRequest::POST)) {
 
-            $con = Doctrine_Manager::connection();
-            $con->beginTransaction();
             try {
-                $name = $request['name'];
-                $user = Doctrine_Core::getTable('MUser')->findOneByUserName($name);
-                if (!$user) {
-                    $user = new MUser();
-                    $user->setUserName($name);
-                    $user->save();
-                }
-
-                $tweet = new TTweet();
-                $tweet->setUserId($user->getId());
-                $tweet->setBody($request['body']);
-                $tweet->save();
-
-                $con->commit();
-
-                sfContext::getInstance()->getConfiguration()->loadHelpers('Url');
-                $this->redirect(url_for('timeline'));
-
+                $tweetRepo = new TweetRepository();
+                $tweetRepo->addTweet($this->getUser()->getGuardUser()->getId(), $request['body']);
+                $this->redirect($this->getController()->genUrl('timeline'));
             } catch (Exception $e) {
-                $con->rollback();
-                throw $e;
+                return sfView::ERROR;
             }
         }
 
         $form = new PostForm();
         $this->form = $form;
+    }
+
+    public function executePostJson(sfWebRequest $request)
+    {
+        sfContext::getInstance()->getLogger()->debug('posted');
+        if ($request->isMethod(sfRequest::POST)) {
+            $userId = $this->getUser()->getGuardUser()->getId();
+            $tweetRepo = new TweetRepository();
+            $ret = array();
+            try {
+                $tweetId = $tweetRepo->addTweet($userId, $request->getParameter('body'));
+                $ret['success'] = 'ok';
+                $ret['tweet_id'] = $tweetId;
+            } catch (Exception $e) {
+                $ret['success'] = 'ng';
+            }
+            $this->getResponse()->setHttpHeader('Content-type', 'application/json');
+            return $this->renderText(json_encode($ret));
+        }
     }
 }

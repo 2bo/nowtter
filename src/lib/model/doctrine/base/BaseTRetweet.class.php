@@ -7,17 +7,17 @@
  * 
  * @property integer $user_id
  * @property integer $tweet_id
- * @property MUser $MUser
+ * @property sfGuardUser $sfGuardUser
  * @property TTweet $TTweet
- * 
- * @method integer  getUserId()   Returns the current record's "user_id" value
- * @method integer  getTweetId()  Returns the current record's "tweet_id" value
- * @method MUser    getMUser()    Returns the current record's "MUser" value
- * @method TTweet   getTTweet()   Returns the current record's "TTweet" value
- * @method TRetweet setUserId()   Sets the current record's "user_id" value
- * @method TRetweet setTweetId()  Sets the current record's "tweet_id" value
- * @method TRetweet setMUser()    Sets the current record's "MUser" value
- * @method TRetweet setTTweet()   Sets the current record's "TTweet" value
+ *
+ * @method integer     getUserId()      Returns the current record's "user_id" value
+ * @method integer     getTweetId()     Returns the current record's "tweet_id" value
+ * @method sfGuardUser getSfGuardUser() Returns the current record's "sfGuardUser" value
+ * @method TTweet      getTTweet()      Returns the current record's "TTweet" value
+ * @method TRetweet    setUserId()      Sets the current record's "user_id" value
+ * @method TRetweet    setTweetId()     Sets the current record's "tweet_id" value
+ * @method TRetweet    setSfGuardUser() Sets the current record's "sfGuardUser" value
+ * @method TRetweet    setTTweet()      Sets the current record's "TTweet" value
  * 
  * @package    nowtter
  * @subpackage model
@@ -42,7 +42,7 @@ abstract class BaseTRetweet extends sfDoctrineRecord
     public function setUp()
     {
         parent::setUp();
-        $this->hasOne('MUser', array(
+        $this->hasOne('sfGuardUser', array(
             'local' => 'user_id',
             'foreign' => 'id',
             'onDelete' => 'CASCADE'));

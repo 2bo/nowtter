@@ -1,15 +1,14 @@
-MUser:
+TUserProfile:
   actAs:
     { Timestampable: ~ }
   columns:
-    sf_guard_user_id: { type: integer, unique: true }
-    user_name: { type: string(255) ,notnull: ture , unique: true}
-    email: { type: string(255) }
+    user_id: { type: integer, notnull: true }
+    display_name: { type: string(255) ,notnull: ture , unique: true}
     profile: { type: string(1000) }
     birthday: { type: date }
     is_private: { type: boolean ,notnull: true, default: 0}
   relations:
-    sfGuardUser: { onDelete: CASCADE, local: sf_guard_user_id, foreign: id, foreignType: one, foreignAlias: MUser }
+    sfGuardUser: { onDelete: CASCADE, local: user_id, foreign: id, foreignType: one }
 
 TTweet:
   actAs:
@@ -19,7 +18,7 @@ TTweet:
     body: { type: string(140), notnull: true }
     is_enable: { type: boolean, notnull: true, default: 1 }
   relations:
-    MUser: { onDelete: CASCADE, local: user_id, foreign: id, foreignAlias: Tweets }
+    sfGuardUser: { onDelete: CASCADE, local: user_id, foreign: id, foreignAlias: Tweets }
 
 TFollow:
   actAs:
@@ -28,7 +27,7 @@ TFollow:
     user_id: { type: integer ,primary: true}
     follow_user_id: { type: integer , primary: true }
   relations:
-    MUser: { onDelete: CASCADE, local: user_id, foreign: id, foreignAlias: Follows }
+    sfGuardUser: { onDelete: CASCADE, local: user_id, foreign: id, foreignAlias: Follows }
 
 TFavorite:
   actAs:
@@ -37,7 +36,7 @@ TFavorite:
     user_id: { type: integer, notnull: true }
     tweet_id: { type: integer, notnull: true }
   relations:
-    MUser:  { onDelete: CASCADE, local: user_id, foreign: id, foreignAlias: Favorites }
+    sfGuardUser: { onDelete: CASCADE, local: user_id, foreign: id, foreignAlias: Favorites }
     TTweet: { onDelete: CASCADE, local: tweet_id, foreign: id, foreignAlias: FavoritedUsers }
 
 TRetweet:
@@ -47,5 +46,5 @@ TRetweet:
     user_id: { type: integer, notnull: true }
     tweet_id: { type: integer, notnull: true }
   relations:
-    MUser:  { onDelete: CASCADE, local: user_id, foreign: id, foreignAlias: Retweets }
+    sfGuardUser: { onDelete: CASCADE, local: user_id, foreign: id, foreignAlias: Retweets }
     TTweet: { onDelete: CASCADE, local: tweet_id, foreign: id, foreignAlias: RetweetedUsers }

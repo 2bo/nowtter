@@ -6,13 +6,23 @@ post:
   url: /post
   param: { module: post, action: post }
 
-timeline:
-  url: /timeline
-  param: { module: timeline, action: index }
+postjson:
+  url: /post/json
+  param: { module: post, action: postJson }
+
+getjson:
+  url: /timeline/json
+  param: { module: timeline, action: getJson }
 
 homepage:
   url:   /
-  param: { module: default, action: index }
+  param: { module: timeline, action: index }
+
+timeline:
+  url: /:name
+  param: { module: timeline, action: index }
+
+
 
 # generic rules
 # please, remove them by adding more specific rules

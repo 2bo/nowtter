@@ -7,14 +7,14 @@
  * 
  * @property integer $user_id
  * @property integer $follow_user_id
- * @property MUser $MUser
- * 
- * @method integer getUserId()         Returns the current record's "user_id" value
- * @method integer getFollowUserId()   Returns the current record's "follow_user_id" value
- * @method MUser   getMUser()          Returns the current record's "MUser" value
- * @method TFollow setUserId()         Sets the current record's "user_id" value
- * @method TFollow setFollowUserId()   Sets the current record's "follow_user_id" value
- * @method TFollow setMUser()          Sets the current record's "MUser" value
+ * @property sfGuardUser $sfGuardUser
+ *
+ * @method integer     getUserId()         Returns the current record's "user_id" value
+ * @method integer     getFollowUserId()   Returns the current record's "follow_user_id" value
+ * @method sfGuardUser getSfGuardUser()    Returns the current record's "sfGuardUser" value
+ * @method TFollow     setUserId()         Sets the current record's "user_id" value
+ * @method TFollow     setFollowUserId()   Sets the current record's "follow_user_id" value
+ * @method TFollow     setSfGuardUser()    Sets the current record's "sfGuardUser" value
  * 
  * @package    nowtter
  * @subpackage model
@@ -39,7 +39,7 @@ abstract class BaseTFollow extends sfDoctrineRecord
     public function setUp()
     {
         parent::setUp();
-        $this->hasOne('MUser', array(
+        $this->hasOne('sfGuardUser', array(
             'local' => 'user_id',
             'foreign' => 'id',
             'onDelete' => 'CASCADE'));

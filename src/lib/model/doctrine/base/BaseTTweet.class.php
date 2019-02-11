@@ -8,20 +8,20 @@
  * @property integer $user_id
  * @property string $body
  * @property boolean $is_enable
- * @property MUser $MUser
+ * @property sfGuardUser $sfGuardUser
  * @property Doctrine_Collection $FavoritedUsers
  * @property Doctrine_Collection $RetweetedUsers
  * 
  * @method integer             getUserId()         Returns the current record's "user_id" value
  * @method string              getBody()           Returns the current record's "body" value
  * @method boolean             getIsEnable()       Returns the current record's "is_enable" value
- * @method MUser               getMUser()          Returns the current record's "MUser" value
+ * @method sfGuardUser         getSfGuardUser()    Returns the current record's "sfGuardUser" value
  * @method Doctrine_Collection getFavoritedUsers() Returns the current record's "FavoritedUsers" collection
  * @method Doctrine_Collection getRetweetedUsers() Returns the current record's "RetweetedUsers" collection
  * @method TTweet              setUserId()         Sets the current record's "user_id" value
  * @method TTweet              setBody()           Sets the current record's "body" value
  * @method TTweet              setIsEnable()       Sets the current record's "is_enable" value
- * @method TTweet              setMUser()          Sets the current record's "MUser" value
+ * @method TTweet              setSfGuardUser()    Sets the current record's "sfGuardUser" value
  * @method TTweet              setFavoritedUsers() Sets the current record's "FavoritedUsers" collection
  * @method TTweet              setRetweetedUsers() Sets the current record's "RetweetedUsers" collection
  * 
@@ -54,7 +54,7 @@ abstract class BaseTTweet extends sfDoctrineRecord
     public function setUp()
     {
         parent::setUp();
-        $this->hasOne('MUser', array(
+        $this->hasOne('sfGuardUser', array(
             'local' => 'user_id',
             'foreign' => 'id',
             'onDelete' => 'CASCADE'));
